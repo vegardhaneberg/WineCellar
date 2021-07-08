@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="WineRegApp.Views.AddWinePage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center">
+            <Entry Text="{Binding NewName}"
+                   Placeholder="Name"
+                   PlaceholderColor="CornflowerBlue"/>
+            <Entry Text="{Binding NewYear}"
+                   Placeholder="Year"
+                   PlaceholderColor="CornflowerBlue"
+                   Keyboard="Numeric"/>
+            <Entry Text="{Binding NewPrice}"
+                   Placeholder="Price"
+                   PlaceholderColor="CornflowerBlue"
+                   Keyboard="Numeric"/>
+            <Entry Text="{Binding NewPlace}"
+                   Placeholder="Place"
+                   PlaceholderColor="CornflowerBlue"/>
+            <Entry Text="{Binding NewRegion}"
+                   Placeholder="Region"
+                   PlaceholderColor="CornflowerBlue"/>
+            <Entry Text="{Binding MinStoreYears}"
+                   Placeholder="Min Storing Years"
+                   PlaceholderColor="CornflowerBlue"
+                   Keyboard="Numeric"/>
+            <Entry Text="{Binding MaxStoreYears}"
+                   Placeholder="Max Storing Years"
+                   PlaceholderColor="CornflowerBlue"
+                   Keyboard="Numeric"/>
+            <Entry Text="{Binding NewCountry}"
+                   Placeholder="Country"
+                   PlaceholderColor="CornflowerBlue"/>
+            <Picker ItemsSource="{Binding WineTypes}"
+                    SelectedItem="{Binding SelectedWineType}"
+                    Title="Color"
+                    TextColor="CornflowerBlue"/>
+            <Button CornerRadius="10"
+                    BackgroundColor="Azure"
+                    Text="Add Wine"
+                    Command="{Binding AddWineCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

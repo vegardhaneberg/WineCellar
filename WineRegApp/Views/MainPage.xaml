@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:WineRegApp.ViewModels"
+             x:Class="WineRegApp.MainPage"
+             xmlns:dxui="http://dips.xamarin.ui.com">
+
+    <ContentPage.BindingContext>
+        <ViewModels:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Filter"
+                     Order="Primary" Name="Filter"
+                     Command="{Binding FilterCommand}"/>
+    </ContentPage.ToolbarItems>
+
+        <dxui:ModalityLayout>
+            <dxui:ModalityLayout.Behaviors>
+                <!-- Menu Button -->
+                <dxui:FloatingActionMenuBehaviour XPosition=".9"
+                                                  YPosition=".9"
+                                                  ExpandButtonText="Open"
+                                                  Size="60"
+                                                  ExpandButtonBackgroundColor="CadetBlue"
+                                                  ExpandButtonFontSize="12"
+                                                  ExpandButtonTextColor="Azure"
+                                                  IsOpen="{Binding MenuButtonIsOpen}">
+                    <dxui:MenuButton Title="Delete All"
+                                     BackgroundColor="CornflowerBlue"
+                                     TextColor="GreenYellow"
+                                     FontSize="14"
+                                     TitleTextColor="Black"
+                                     TitleFontSize="16"
+                                     Command="{Binding DeleteAllCommand}"/>
+                    <dxui:MenuButton Title="Add Wine"
+                                     BackgroundColor="CornflowerBlue"
+                                     TextColor="GreenYellow"
+                                     FontSize="14"
+                                     TitleTextColor="Black"
+                                     TitleFontSize="16"
+                                     Command="{Binding AddWineCommand}"/>
+                </dxui:FloatingActionMenuBehaviour>
+                <!-- Filter Sheet View -->
+                <dxui:SheetBehavior IsOpen="{Binding FilterIsOpen}"
+                                    Alignment="Bottom"
+                                    Position="0.5"
+                                    MinPosition="0.2"
+                                    MaxPosition="0.8"
+                                    IsDraggable="True"
+                                    ShouldAutoClose="False"
+                                    HeaderColor="#C0C0C0"
+                                    ContentColor="#C0C0C0"
+                                    HandleColor="#280000 ">
+                    <dxui:SheetBehavior.SheetContentTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="0"
+                                         Margin="0">
+                                <Button Text="Close"
+                                    Command="{Binding CloseFilterCommand}"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </dxui:SheetBehavior.SheetContentTemplate>
+                </dxui:SheetBehavior>
+            </dxui:ModalityLayout.Behaviors>
+
+            <!-- Page Content -->
+            <StackLayout Padding="0" Margin="10">
+                <Grid ColumnSpacing="0" RowSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Orientation="Horizontal"
+                                 Grid.Column="0"
+                                 Padding="0"
+                                 Margin="20, 0, 0, 0">
+                        <BoxView Color="Red" CornerRadius="9"/>
+                        <BoxView Color="Plum" CornerRadius="9"/>
+                        <BoxView Color="Khaki" CornerRadius="9"/>
+                    </StackLayout>
+                    <Button Grid.Column="1"
+                            Text="Sort"
+                            Command="{Binding SortOpenCommand}"
+                            HorizontalOptions="End"
+                            Margin="0, 0, 12, 0">
+                        <Button.Behaviors>
+                            <dxui:PopupBehavior Direction="Below"
+                                                BindingContext="{Binding SortViewModel}">
+                                <Frame>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Button Text="Ascnding"
+                                                Grid.Column="0"
+                                                Grid.Row="0"/>
+                                        <Button Text="Descending"
+                                                Grid.Column="1"
+                                                Grid.Row="0"/>
+
+                                        <dxui:RadioButtonGroup ItemsSource="{Binding Wines}"
+                                                               DisplayMemberPath="Name"
+                                                               Grid.Row="1"
+                                                               Grid.ColumnSpan="2"/>
+                                    </Grid>
+                                </Frame>
+                            </dxui:PopupBehavior>
+                        </Button.Behaviors>
+                    </Button>
+                </Grid>
+                <ListView x:Name="Wines" ItemsSource="{Binding Wines}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </dxui:ModalityLayout>
+</ContentPage>
+
+
+
+
