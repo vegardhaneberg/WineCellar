@@ -34,7 +34,11 @@ namespace WineRegApp
 
             if (IsLoggedIn)
             {
-                App.Current.MainPage.DisplayAlert("You are logged in", "YOYOYO", "OK", "Not OK");
+                // load user database based on their unique username.
+            }
+            else
+            {
+                // Create unique username and load their wine data. 
             }
 
             Application.Current.Properties["IsLoggedIn"] = Boolean.TrueString;

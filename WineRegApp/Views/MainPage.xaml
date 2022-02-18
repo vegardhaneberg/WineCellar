@@ -91,19 +91,21 @@
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding RoseCount}" TextColor="WhiteSmoke"></Label>
                         </Frame>
                     </StackLayout>
+
+                    <!--Sort Pop up-->
                     <Button Grid.Column="1"
                             Text="Sort"
                             Command="{Binding SortOpenCommand}"
                             HorizontalOptions="End"
                             Margin="0, 0, 12, 0">
                         <Button.Behaviors>
-                            <dxui:PopupBehavior Direction="Below"
-                                                BindingContext="{Binding SortViewModel}">
+                            <dxui:PopupBehavior Direction="Below">
                                 <Frame>
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition/>
+                                            <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition/>
@@ -112,15 +114,27 @@
 
                                         <Button Text="Ascnding"
                                                 Grid.Column="0"
-                                                Grid.Row="0"/>
+                                                Grid.Row="0"/>                       
                                         <Button Text="Descending"
                                                 Grid.Column="1"
                                                 Grid.Row="0"/>
 
-                                        <dxui:RadioButtonGroup ItemsSource="{Binding Wines}"
+                                        <dxui:RadioButtonGroup x:Name="SortCategories"
+                                                               ItemsSource="{Binding SortCategories}"
                                                                DisplayMemberPath="Name"
                                                                Grid.Row="1"
-                                                               Grid.ColumnSpan="2"/>
+                                                               Grid.ColumnSpan="2"
+                                                               TextColor="WhiteSmoke"
+                                                               SelectedColor="AliceBlue"
+                                                               DeSelectedColor="WhiteSmoke"
+                                                               SeparatorColor="WhiteSmoke"
+                                                               SelectedItem="{Binding SelectedSortCategory}"/>
+                                        <Button Text="Done"
+                                                Grid.Row="2"
+                                                Grid.ColumnSpan="2"
+                                                HorizontalOptions="Center"
+                                                Command="{Binding SortCloseCommand}"
+                                                dxui:Modality.CloseOnClick="True"/>
                                     </Grid>
                                 </Frame>
                             </dxui:PopupBehavior>

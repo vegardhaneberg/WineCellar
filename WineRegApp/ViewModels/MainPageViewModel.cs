@@ -15,28 +15,36 @@ namespace WineRegApp.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
-
-        private ObservableCollection<Wine> wines;
         public ICommand FilterCommand { private set; get; }
         public ICommand CloseFilterCommand { private set; get; }
         public ICommand DeleteAllCommand { private set; get; }
         public ICommand AddWineCommand { private set; get; }
         public ICommand LogOutCommand { private set; get; }
         public ICommand FillDummyDataCommand { private set; get; }
+        public ICommand SortOpenCommand { private set; get; }
+        public ICommand SortCloseCommand { private set; get; }
+
         private bool filterIsOpen;
         private bool menuButtonIsOpen;
-        public SortViewModel SortViewModel { get; set; }
+        private bool sortAscending;
+
         private int redCount;
         private int roseCount;
         private int whiteCount;
+
+        private ObservableCollection<Wine> wines;
+        private ObservableCollection<SortCategory> sortCategories;
+
+        private SortCategory selectedSortCategory;
 
         public MainPageViewModel()
         {
             filterIsOpen = false;
             menuButtonIsOpen = false;
-            wines = new ObservableCollection<Wine>();
+            sortAscending = true;
 
-            SortViewModel = new SortViewModel(this);
+            wines = new ObservableCollection<Wine>();
+            sortCategories = new ObservableCollection<SortCategory>();
 
             AddWineCommand = new Command(async () =>
             {
@@ -84,8 +92,44 @@ namespace WineRegApp.ViewModels
                         Wines.Add(w);
                     }
                 }
+                UpdateWineCounts();
                 MenuButtonIsOpen = false;
             });
+            SortOpenCommand = new Command(() =>
+            {
+
+            });
+            SortCloseCommand = new Command(async () =>
+            {
+                List<Wine> receivedWines = await App.Database.GetAllWinesAsync(new WineRequest(SelectedSortCategory.WineCategoryEnum));
+                Wines = new ObservableCollection<Wine>();
+                foreach (Wine w in receivedWines)
+                {
+                    Wines.Add(w);
+                }
+                UpdateWineCounts();
+            });
+
+        }
+
+        public SortCategory SelectedSortCategory
+        {
+            get { return selectedSortCategory; }
+            set
+            {
+                selectedSortCategory = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<SortCategory> SortCategories
+        {
+            get { return sortCategories; }
+            set
+            {
+                sortCategories = value;
+                NotifyPropertyChanged();
+            }
         }
 
         private int getTypeCount(WineType wt)
@@ -141,7 +185,19 @@ namespace WineRegApp.ViewModels
 
         public async void Initialize()
         {
-            List<Wine> winesList = await App.Database.GetAllWinesAsync();
+            SortCategory sortCat1 = new SortCategory("Name");
+            SortCategory sortCat2 = new SortCategory("Year");
+            SortCategory sortCat3 = new SortCategory("Drink Urgency");
+
+            SortCategories = new ObservableCollection<SortCategory>
+            {
+                sortCat1,
+                sortCat2,
+                sortCat3,
+            };
+            SelectedSortCategory = sortCat2;
+
+            List<Wine> winesList = await App.Database.GetAllWinesAsync(new WineRequest(SelectedSortCategory.WineCategoryEnum));
 
             foreach (Wine w in winesList)
             {

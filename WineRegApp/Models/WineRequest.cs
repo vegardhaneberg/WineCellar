@@ -1,13 +1,15 @@
 ﻿using System;
+using WineRegApp.Models;
+
 namespace WineRegApp.Models
 {
     public class WineRequest
     {
-        public string SortValue { get; }
+        public WineSortCategory SortValue { get; }
 
-        public WineRequest(string SortValue)
+        public WineRequest(WineSortCategory wineSortCategory)
         {
-            this.SortValue = SortValue;
+            SortValue = SortValue;
         }
     }
 }

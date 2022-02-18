@@ -21,7 +21,23 @@ namespace WineRegApp.Services
         {
             return database.Table<Wine>().ToListAsync();
         }
-
+        public async Task<List<Wine>> GetAllWinesAsync(WineRequest request)
+        {
+            if (request.SortValue == WineSortCategory.Name)
+            {
+                return await database.Table<Wine>().OrderBy(obj => obj.Name).ToListAsync();
+            }
+            else if (request.SortValue == WineSortCategory.Year)
+            {
+                return await database.Table<Wine>().OrderBy(obj => obj.Year).ToListAsync();
+            }
+            // Assumes that the final sort category is CanDrinkToDate (Drink Urgency).
+            // If more sorting options are added, include them as else if above this one. 
+            else
+            {
+                return await database.Table<Wine>().OrderBy(obj => obj.CanDrinkToDate).ToListAsync();
+            }
+        }
         public Task<Wine> GetWineAsync(int id)
         {
             return database.Table<Wine>()
@@ -78,6 +94,9 @@ namespace WineRegApp.Services
                     Price = 169,
                     WineType = WineType.Red,
                     Year = 2020,
+                    CanDrinkFromDate = new DateTime(2022, 10, 20),
+                    CanDrinkToDate = new DateTime(2024, 10, 20),
+                    StoredDate = new DateTime(2022, 1, 1)
                 };
                 Wine w2 = new Wine
                 {
@@ -89,6 +108,9 @@ namespace WineRegApp.Services
                     Price = 135,
                     WineType = WineType.Rose,
                     Year = 2020,
+                    CanDrinkFromDate = new DateTime(2027, 10, 20),
+                    CanDrinkToDate = new DateTime(2029, 10, 20),
+                    StoredDate = new DateTime(2020, 10, 1)
                 };
                 Wine w3 = new Wine
                 {
@@ -100,6 +122,9 @@ namespace WineRegApp.Services
                     Price = 279,
                     WineType = WineType.Red,
                     Year = 2015,
+                    CanDrinkFromDate = new DateTime(2029, 10, 20),
+                    CanDrinkToDate = new DateTime(2030, 10, 20),
+                    StoredDate = new DateTime(2018, 1, 1)
                 };
                 Wine w4 = new Wine
                 {
@@ -111,6 +136,9 @@ namespace WineRegApp.Services
                     Price = 149,
                     WineType = WineType.Red,
                     Year = 2021,
+                    CanDrinkFromDate = new DateTime(2022, 8, 20),
+                    CanDrinkToDate = new DateTime(2023, 5, 21),
+                    StoredDate = new DateTime(2021, 6, 13)
                 };
                 Wine w5 = new Wine
                 {
@@ -122,6 +150,9 @@ namespace WineRegApp.Services
                     Price = 209,
                     WineType = WineType.Red,
                     Year = 2019,
+                    CanDrinkFromDate = new DateTime(2025, 10, 20),
+                    CanDrinkToDate = new DateTime(2028, 10, 20),
+                    StoredDate = new DateTime(2018, 1, 1)
                 };
                 Wine w6 = new Wine
                 {
@@ -133,6 +164,9 @@ namespace WineRegApp.Services
                     Price = 469,
                     WineType = WineType.Red,
                     Year = 2010,
+                    CanDrinkFromDate = new DateTime(2024, 10, 20),
+                    CanDrinkToDate = new DateTime(2025, 10, 20),
+                    StoredDate = new DateTime(2021, 10, 1)
                 };
                 Wine w7 = new Wine
                 {
@@ -144,6 +178,9 @@ namespace WineRegApp.Services
                     Price = 169,
                     WineType = WineType.Red,
                     Year = 2016,
+                    CanDrinkFromDate = new DateTime(2022, 10, 20),
+                    CanDrinkToDate = new DateTime(2024, 10, 20),
+                    StoredDate = new DateTime(2022, 1, 1)
                 };
                 Wine w8 = new Wine
                 {
@@ -155,6 +192,9 @@ namespace WineRegApp.Services
                     Price = 155,
                     WineType = WineType.Red,
                     Year = 2019,
+                    CanDrinkFromDate = new DateTime(2022, 10, 20),
+                    CanDrinkToDate = new DateTime(2023, 10, 20),
+                    StoredDate = new DateTime(2020, 1, 1)
                 };
                 Wine w9 = new Wine
                 {
@@ -166,6 +206,9 @@ namespace WineRegApp.Services
                     Price = 260,
                     WineType = WineType.White,
                     Year = 2020,
+                    CanDrinkFromDate = new DateTime(2028, 10, 20),
+                    CanDrinkToDate = new DateTime(2030, 10, 20),
+                    StoredDate = new DateTime(2014, 1, 1)
                 };
                 Wine w10 = new Wine
                 {
@@ -177,6 +220,9 @@ namespace WineRegApp.Services
                     Price = 10000,
                     WineType = WineType.Red,
                     Year = 1998,
+                    CanDrinkFromDate = new DateTime(2022, 10, 20),
+                    CanDrinkToDate = new DateTime(2023, 12, 20),
+                    StoredDate = new DateTime(2010, 1, 1)
                 };
 
                 wines.Add(w1);
