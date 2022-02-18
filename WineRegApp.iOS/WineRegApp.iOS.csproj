@@ -141,4 +141,9 @@
       <Name>WineRegApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\FontAwesome6Brands.otf" />
+    <BundleResource Include="Resources\FontAwesome6Regular.otf" />
+    <BundleResource Include="Resources\FontAwesome6Solid.otf" />
+  </ItemGroup>
 </Project>

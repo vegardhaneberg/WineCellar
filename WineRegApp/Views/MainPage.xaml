@@ -60,6 +60,13 @@
                                          Margin="0">
                                 <Button Text="Close"
                                     Command="{Binding CloseFilterCommand}"/>
+                                <Image>
+                                  <Image.Source>
+                                    <FontImageSource FontFamily="FontAwesome6Solid"
+                                                     Color="White"
+                                                     Glyph="&#xf4e3;"/>
+                                  </Image.Source>
+                                </Image>
                             </StackLayout>
                         </DataTemplate>
                     </dxui:SheetBehavior.SheetContentTemplate>

@@ -4,5 +4,31 @@
              x:Class="WineRegApp.App">
     <Application.Resources>
 
+        <ResourceDictionary> 
+        <OnPlatform x:TypeArguments="x:String" 
+                    x:Key="FontAwesomeBrands">
+          <On Platform="Android" 
+              Value="FontAwesome6Brands.otf#Regular" />
+          <On Platform="iOS" 
+              Value="FontAwesome6Brands.oft" />
+        </OnPlatform> 
+    
+        <OnPlatform x:TypeArguments="x:String" 
+                    x:Key="FontAwesomeSolid"> 
+          <On Platform="Android" 
+              Value="FontAwesome6Solid.otf#Regular" /> 
+          <On Platform="iOS" 
+              Value="FontAwesome6Solid.oft" /> 
+        </OnPlatform> 
+    
+        <OnPlatform x:TypeArguments="x:String" 
+                    x:Key="FontAwesomeRegular">
+          <On Platform="Android" 
+              Value="FontAwesome6Regular.otf#Regular" /> 
+          <On Platform="iOS" 
+              Value="FontAwesome6Regular.oft" /> 
+        </OnPlatform>
+      </ResourceDictionary>
+
     </Application.Resources>
 </Application>

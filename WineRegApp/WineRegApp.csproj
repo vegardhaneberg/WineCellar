@@ -21,5 +21,17 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
     <Folder Include="Services\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\" />
+    <None Remove="Resources\FontAwesome6Brands.otf" />
+    <None Remove="Resources\FontAwesome6Regular.otf" />
+    <None Remove="Resources\FontAwesome6Solid.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\FontAwesome6Brands.otf" />
+    <EmbeddedResource Include="Resources\FontAwesome6Regular.otf" />
+    <EmbeddedResource Include="Resources\FontAwesome6Solid.otf" />
   </ItemGroup>
 </Project>
