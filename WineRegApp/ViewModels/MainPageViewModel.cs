@@ -23,6 +23,8 @@ namespace WineRegApp.ViewModels
         public ICommand FillDummyDataCommand { private set; get; }
         public ICommand SortOpenCommand { private set; get; }
         public ICommand SortCloseCommand { private set; get; }
+        public ICommand AscendingCommand { private set; get; }
+        public ICommand DescendingCommand { private set; get; }
 
         private bool filterIsOpen;
         private bool menuButtonIsOpen;
@@ -109,7 +111,24 @@ namespace WineRegApp.ViewModels
                 }
                 UpdateWineCounts();
             });
+            AscendingCommand = new Command(() =>
+            {
+                SortAscending = true;
+            });
+            DescendingCommand = new Command(() =>
+            {
+                SortAscending = false;
+            });
+        }
 
+        public bool SortAscending
+        {
+            get { return sortAscending; }
+            set
+            {
+                sortAscending = value;
+                NotifyPropertyChanged();
+            }
         }
 
         public SortCategory SelectedSortCategory
@@ -195,9 +214,11 @@ namespace WineRegApp.ViewModels
                 sortCat2,
                 sortCat3,
             };
-            SelectedSortCategory = sortCat2;
+            SelectedSortCategory = sortCat1;
 
-            List<Wine> winesList = await App.Database.GetAllWinesAsync(new WineRequest(SelectedSortCategory.WineCategoryEnum));
+            WineRequest wineRequest = new WineRequest(SelectedSortCategory.WineCategoryEnum, SortAscending);
+
+            List<Wine> winesList = await App.Database.GetAllWinesAsync(wineRequest);
 
             foreach (Wine w in winesList)
             {

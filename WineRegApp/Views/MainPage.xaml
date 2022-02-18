@@ -114,10 +114,12 @@
 
                                         <Button Text="Ascnding"
                                                 Grid.Column="0"
-                                                Grid.Row="0"/>                       
+                                                Grid.Row="0"
+                                                Command="{Binding AscendingCommand}"/>                       
                                         <Button Text="Descending"
                                                 Grid.Column="1"
-                                                Grid.Row="0"/>
+                                                Grid.Row="0"
+                                                Command="{Binding DescendingCommand}"/>
 
                                         <dxui:RadioButtonGroup x:Name="SortCategories"
                                                                ItemsSource="{Binding SortCategories}"
