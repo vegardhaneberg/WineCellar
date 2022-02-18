@@ -26,10 +26,12 @@ namespace WineRegApp.ViewModels
         private bool filterIsOpen;
         private bool menuButtonIsOpen;
         public SortViewModel SortViewModel { get; set; }
+        private int redCount;
+        private int roseCount;
+        private int whiteCount;
 
         public MainPageViewModel()
         {
-
             filterIsOpen = false;
             menuButtonIsOpen = false;
             wines = new ObservableCollection<Wine>();
@@ -45,8 +47,15 @@ namespace WineRegApp.ViewModels
             });
             DeleteAllCommand = new Command(async () =>
             {
-                await App.Database.DeleteAllWinesAsync();
-                Wines = new ObservableCollection<Wine>();
+                string action = await App.Current.MainPage.DisplayActionSheet("Are you sure?", "Cancel", "Yes", "No");
+                Console.WriteLine(action);
+                Console.WriteLine(action == "Yes");
+                if (action == "Yes")
+                {
+                    await App.Database.DeleteAllWinesAsync();
+                    Wines = new ObservableCollection<Wine>();
+                    MenuButtonIsOpen = false;
+                }
             });
             FilterCommand = new Command(() =>
             {
@@ -60,11 +69,64 @@ namespace WineRegApp.ViewModels
             {
                 App.Current.Properties["IsLoggedIn"] = Boolean.FalseString;
             });
-            FillDummyDataCommand = new Command(() =>
+            FillDummyDataCommand = new Command(async () =>
             {
+                List<Wine> wineList = await App.Database.InsertDummyData();
 
+                if (wineList is null)
+                {
+                    await App.Current.MainPage.DisplayAlert(String.Empty, "You already have wines registered", "Ok");
+                }
+                else
+                {
+                    foreach (Wine w in wineList)
+                    {
+                        Wines.Add(w);
+                    }
+                }
+                MenuButtonIsOpen = false;
             });
+        }
 
+        private int getTypeCount(WineType wt)
+        {
+            int redCount = 0;
+            foreach (Wine w in Wines)
+            {
+                if (w.WineType == wt)
+                {
+                    redCount++;
+                }
+            }
+            return redCount;
+        }
+
+        public int RedCount
+        {
+            get { return redCount; }
+            set
+            {
+                redCount = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public int WhiteCount
+        {
+            get { return whiteCount; }
+            set
+            {
+                whiteCount = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public int RoseCount
+        {
+            get { return roseCount; }
+            set
+            {
+                roseCount = value;
+                NotifyPropertyChanged();
+            }
         }
 
         public bool MenuButtonIsOpen
@@ -85,6 +147,7 @@ namespace WineRegApp.ViewModels
             {
                 wines.Add(w);
             }
+            UpdateWineCounts();
         }
 
         public bool FilterIsOpen
@@ -103,13 +166,17 @@ namespace WineRegApp.ViewModels
             set
             {
                 wines = value;
+                UpdateWineCounts();
                 NotifyPropertyChanged();
             }
         }
 
-
-
-
+        public void UpdateWineCounts()
+        {
+            RedCount = getTypeCount(WineType.Red);
+            WhiteCount = getTypeCount(WineType.White);
+            RoseCount = getTypeCount(WineType.Rose);
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -13,7 +13,7 @@ namespace WineRegApp.Models
         public double Price { get; set; }
         public string Country { get; set; }
         public int Year { get; set; }
-        public string WineType { get; set; }
+        public WineType WineType { get; set; }
         public DateTime StoredDate { get; set; }
         public DateTime CanDrinkFromDate { get; set; }
         public DateTime CanDrinkToDate { get; set; }

@@ -47,6 +47,9 @@ namespace WineRegApp.ViewModels
 
             AddWineCommand = new Command(() =>
             {
+                WineType wineType = WineType.Red;
+                if (selectedWineType == "White") wineType = WineType.White;
+                if (selectedWineType == "Rose") wineType = WineType.Rose;
                 try
                 {
                     Wine newWine = new Wine
@@ -57,7 +60,7 @@ namespace WineRegApp.ViewModels
                         Place = NewPlace,
                         Region = NewRegion,
                         Country = NewCountry,
-                        WineType = SelectedWineType,
+                        WineType = wineType,
                         StoredDate = DateTime.Now,
                         CanDrinkFromDate = new DateTime(DateTime.Now.Year + int.Parse(minStoreYears),
                                                         DateTime.Now.Month,
@@ -69,6 +72,7 @@ namespace WineRegApp.ViewModels
 
                     parentViewModel.Wines.Add(newWine);
                     App.Database.SaveWineAsync(newWine);
+                    parentViewModel.UpdateWineCounts();
                     Application.Current.MainPage.Navigation.PopAsync();
                 }
                 catch (Exception)

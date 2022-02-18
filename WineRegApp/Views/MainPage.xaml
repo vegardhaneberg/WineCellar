@@ -50,15 +50,10 @@
 
                 <!-- Filter Sheet View -->
                 <dxui:SheetBehavior IsOpen="{Binding FilterIsOpen}"
-                                    Alignment="Bottom"
-                                    Position="0.5"
-                                    MinPosition="0.2"
-                                    MaxPosition="0.8"
                                     IsDraggable="True"
-                                    ShouldAutoClose="False"
                                     HeaderColor="#C0C0C0"
                                     ContentColor="#C0C0C0"
-                                    HandleColor="#280000 ">
+                                    HandleColor="#280000">
                     <dxui:SheetBehavior.SheetContentTemplate>
                         <DataTemplate>
                             <StackLayout Padding="0"
@@ -83,9 +78,18 @@
                                  Grid.Column="0"
                                  Padding="0"
                                  Margin="20, 0, 0, 0">
-                        <BoxView Color="Red" CornerRadius="9"/>
-                        <BoxView Color="Plum" CornerRadius="9"/>
-                        <BoxView Color="Khaki" CornerRadius="9"/>
+                        <Frame BackgroundColor="Red" CornerRadius="9" Padding="0" HeightRequest="40" WidthRequest="40" IsClippedToBounds="True"
+                               HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding RedCount}" TextColor="WhiteSmoke"></Label>
+                        </Frame>
+                        <Frame BackgroundColor="Plum" CornerRadius="9" Padding="0" HeightRequest="40" WidthRequest="40" IsClippedToBounds="True"
+                               HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding WhiteCount}" TextColor="WhiteSmoke"></Label>
+                        </Frame>
+                        <Frame BackgroundColor="Khaki" CornerRadius="9" Padding="0" HeightRequest="40" WidthRequest="40" IsClippedToBounds="True"
+                               HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding RoseCount}" TextColor="WhiteSmoke"></Label>
+                        </Frame>
                     </StackLayout>
                     <Button Grid.Column="1"
                             Text="Sort"
