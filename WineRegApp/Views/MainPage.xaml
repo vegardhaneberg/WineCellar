@@ -39,7 +39,15 @@
                                      TitleTextColor="Black"
                                      TitleFontSize="16"
                                      Command="{Binding AddWineCommand}"/>
+                    <dxui:MenuButton Title="Fill Dummy Data"
+                                     BackgroundColor="CornflowerBlue"
+                                     TextColor="GreenYellow"
+                                     FontSize="14"
+                                     TitleTextColor="Black"
+                                     TitleFontSize="16"
+                                     Command="{Binding FillDummyDataCommand}"/>
                 </dxui:FloatingActionMenuBehaviour>
+
                 <!-- Filter Sheet View -->
                 <dxui:SheetBehavior IsOpen="{Binding FilterIsOpen}"
                                     Alignment="Bottom"

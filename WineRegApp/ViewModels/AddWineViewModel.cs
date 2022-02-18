@@ -69,7 +69,7 @@ namespace WineRegApp.ViewModels
 
                     parentViewModel.Wines.Add(newWine);
                     App.Database.SaveWineAsync(newWine);
-                    App.Current.MainPage.Navigation.PopAsync();
+                    Application.Current.MainPage.Navigation.PopAsync();
                 }
                 catch (Exception)
                 {
@@ -77,7 +77,6 @@ namespace WineRegApp.ViewModels
                         "Make sure year and price are numbers",
                         "OK");
                 }
-
             });
         }
 

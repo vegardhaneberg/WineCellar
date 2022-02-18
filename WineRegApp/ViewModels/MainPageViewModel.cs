@@ -22,6 +22,7 @@ namespace WineRegApp.ViewModels
         public ICommand DeleteAllCommand { private set; get; }
         public ICommand AddWineCommand { private set; get; }
         public ICommand LogOutCommand { private set; get; }
+        public ICommand FillDummyDataCommand { private set; get; }
         private bool filterIsOpen;
         private bool menuButtonIsOpen;
         public SortViewModel SortViewModel { get; set; }
@@ -59,6 +60,10 @@ namespace WineRegApp.ViewModels
             {
                 App.Current.Properties["IsLoggedIn"] = Boolean.FalseString;
             });
+            FillDummyDataCommand = new Command(() =>
+            {
+
+            });
 
         }
 
@@ -87,7 +92,7 @@ namespace WineRegApp.ViewModels
             get { return filterIsOpen; }
             set
             {
-                this.filterIsOpen = value;
+                filterIsOpen = value;
                 NotifyPropertyChanged();
             }
         }

@@ -16,6 +16,7 @@ namespace WineRegApp.Services
             database.CreateTableAsync<Wine>().Wait();
         }
 
+        // Get methods
         public Task<List<Wine>> GetAllWinesAsync()
         {
             return database.Table<Wine>().ToListAsync();
@@ -27,6 +28,7 @@ namespace WineRegApp.Services
                 .Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
+        // Save Mathods
         public Task<int> SaveWineAsync(Wine wine)
         {
             if (wine.ID != 0)
@@ -39,6 +41,7 @@ namespace WineRegApp.Services
             }
         }
 
+        // Delete Methods 
         public Task<int> DeleteWineAsync(Wine wine)
         {
             return database.DeleteAsync(wine);
@@ -47,6 +50,31 @@ namespace WineRegApp.Services
         public Task<int> DeleteAllWinesAsync()
         {
             return database.DeleteAllAsync<Wine>();
+        }
+
+        // Insert Dummy Data Method
+        public async Task<List<Wine>> InsertDummyData()
+        {
+            List<Wine> wines = await database.Table<Wine>().ToListAsync();
+
+            if (wines.Count == 0)
+            {
+                Wine w = new Wine
+                {
+                    ID = 0,
+                    Name = "Domini Veneti Valpolicella Ripasso",
+                    Place = "Valpolicella",
+                    Region = "Valpolicella",
+                    Country = "Italy",
+                    Price = 169,
+                    WineType = "Red",
+
+
+                };
+                wines.Add(new Wine());
+            }
+
+            return wines;
         }
     }
 }
