@@ -33,6 +33,11 @@ namespace WineRegApp.Services
                 if (request.Ascending) return await database.Table<Wine>().OrderBy(obj => obj.Year).ToListAsync();
                 else return await database.Table<Wine>().OrderByDescending(obj => obj.Year).ToListAsync();
             }
+            else if (request.SortValue == WineSortCategory.Price)
+            {
+                if (request.Ascending) return await database.Table<Wine>().OrderBy(obj => obj.Price).ToListAsync();
+                else return await database.Table<Wine>().OrderByDescending(obj => obj.Year).ToListAsync();
+            }
             // Assumes that the final sort category is CanDrinkToDate (Drink Urgency).
             // If more sorting options are added, include them as else if above this one. 
             else

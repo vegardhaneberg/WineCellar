@@ -21,6 +21,10 @@ namespace WineRegApp.Models
             {
                 WineCategoryEnum = WineSortCategory.DrinkUrgency;
             }
+            else if (name == "Price")
+            {
+                WineCategoryEnum = WineSortCategory.Price;
+            }
         }
     }
     public enum WineSortCategory
@@ -28,5 +32,6 @@ namespace WineRegApp.Models
         Name,
         Year,
         DrinkUrgency,
+        Price,
     }
 }

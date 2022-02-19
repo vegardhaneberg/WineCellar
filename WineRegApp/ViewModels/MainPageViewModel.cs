@@ -207,12 +207,14 @@ namespace WineRegApp.ViewModels
             SortCategory sortCat1 = new SortCategory("Name");
             SortCategory sortCat2 = new SortCategory("Year");
             SortCategory sortCat3 = new SortCategory("Drink Urgency");
+            SortCategory sortCat4 = new SortCategory("Price");
 
             SortCategories = new ObservableCollection<SortCategory>
             {
                 sortCat1,
                 sortCat2,
                 sortCat3,
+                sortCat4,
             };
             SelectedSortCategory = sortCat1;
 
