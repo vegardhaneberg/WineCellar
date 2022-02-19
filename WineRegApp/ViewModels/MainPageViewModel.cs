@@ -103,7 +103,7 @@ namespace WineRegApp.ViewModels
             });
             SortCloseCommand = new Command(async () =>
             {
-                List<Wine> receivedWines = await App.Database.GetAllWinesAsync(new WineRequest(SelectedSortCategory.WineCategoryEnum));
+                List<Wine> receivedWines = await App.Database.GetAllWinesAsync(new WineRequest(SelectedSortCategory.WineCategoryEnum, SortAscending));
                 Wines = new ObservableCollection<Wine>();
                 foreach (Wine w in receivedWines)
                 {

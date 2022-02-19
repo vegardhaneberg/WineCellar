@@ -15,9 +15,22 @@ namespace WineRegApp
         {
             InitializeComponent();
             Title = "Your Wine Cellar";
-            MainPageViewModel hei = new MainPageViewModel();
-            hei.Initialize();
-            BindingContext = hei;
+            MainPageViewModel mainPageVM = new MainPageViewModel();
+            mainPageVM.Initialize();
+            BindingContext = mainPageVM;
+        }
+
+        void AscendingButton_Clicked(System.Object sender, System.EventArgs e)
+        {
+            AscendingButton.BorderColor = Color.Blue;
+            DescendingButton.BorderColor = Color.Transparent;
+
+        }
+
+        void DescendingButton_Clicked(System.Object sender, System.EventArgs e)
+        {
+            AscendingButton.BorderColor = Color.Transparent; 
+            DescendingButton.BorderColor = Color.Blue;
         }
     }
 }

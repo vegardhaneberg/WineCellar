@@ -120,13 +120,25 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Button Text="Ascnding"
+                                                x:Name="AscendingButton"
                                                 Grid.Column="0"
                                                 Grid.Row="0"
-                                                Command="{Binding AscendingCommand}"/>                       
+                                                Command="{Binding AscendingCommand}"
+                                                Clicked="AscendingButton_Clicked"
+                                                BorderWidth="2"
+                                                CornerRadius="20"
+                                                BorderColor="Blue"
+                                                Padding="3, 0, 3, 0"/>                       
                                         <Button Text="Descending"
+                                                x:Name="DescendingButton"
                                                 Grid.Column="1"
                                                 Grid.Row="0"
-                                                Command="{Binding DescendingCommand}"/>
+                                                Command="{Binding DescendingCommand}"
+                                                Clicked="DescendingButton_Clicked"
+                                                BorderWidth="2"
+                                                BorderColor="Transparent"
+                                                CornerRadius="20"
+                                                Padding="3, 0, 3, 0"/>
 
                                         <dxui:RadioButtonGroup x:Name="SortCategories"
                                                                ItemsSource="{Binding SortCategories}"
@@ -153,7 +165,35 @@
                 <ListView x:Name="Wines" ItemsSource="{Binding Wines}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextCell Text="{Binding Name}"/>
+                            <ViewCell>
+
+                            <!--<Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
+                                  <Image.Source>
+                                    <FontImageSource FontFamily="FontAwesome6Solid"
+                                                     Color="Red"
+                                                     Glyph="&#xf4e3;"/>
+                                  </Image.Source>
+                                </Image>
+                                <Label Text="{Binding Name}" Grid.Column="1"/>
+                            </Grid>-->
+
+                            <!--<TextCell Text="{Binding Name}" Grid.Column="0"/>-->
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Image HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="FontAwesome6Solid" Color="Red" Glyph="&#xf4e3;"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Label Text="{Binding Name}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </StackLayout>
+                            </ViewCell>
+
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
