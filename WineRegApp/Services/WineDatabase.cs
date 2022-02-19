@@ -90,7 +90,6 @@ namespace WineRegApp.Services
             {
                 Wine w1 = new Wine
                 {
-                    ID = 0,
                     Name = "Domini Veneti Valpolicella Ripasso",
                     Place = "Valpolicella",
                     Region = "Valpolicella",
@@ -104,7 +103,6 @@ namespace WineRegApp.Services
                 };
                 Wine w2 = new Wine
                 {
-                    ID = 1,
                     Name = "Periquita Rosé",
                     Place = "Terras do Sado",
                     Region = "Terras do Sado",
@@ -118,7 +116,6 @@ namespace WineRegApp.Services
                 };
                 Wine w3 = new Wine
                 {
-                    ID = 2,
                     Name = "Viña Ardanza Reserva",
                     Place = "Rijoa",
                     Region = "Rijoa",
@@ -132,7 +129,6 @@ namespace WineRegApp.Services
                 };
                 Wine w4 = new Wine
                 {
-                    ID = 3,
                     Name = "Domaine d'Andezon",
                     Place = "Rhone",
                     Region = "Rhone",
@@ -146,7 +142,6 @@ namespace WineRegApp.Services
                 };
                 Wine w5 = new Wine
                 {
-                    ID = 4,
                     Name = "Giovanni Rosso Langhe Nebbiolo",
                     Place = "Langhe",
                     Region = "Langhe",
@@ -160,7 +155,6 @@ namespace WineRegApp.Services
                 };
                 Wine w6 = new Wine
                 {
-                    ID = 5,
                     Name = "Chateau Dudon",
                     Place = "Bordeaux",
                     Region = "Bordeaux",
@@ -174,7 +168,6 @@ namespace WineRegApp.Services
                 };
                 Wine w7 = new Wine
                 {
-                    ID = 6,
                     Name = "Chateau Musar",
                     Place = "Bekaay Valley",
                     Region = "Bekaay Valley",
@@ -188,7 +181,6 @@ namespace WineRegApp.Services
                 };
                 Wine w8 = new Wine
                 {
-                    ID = 7,
                     Name = "Domaine Colombier Crozes Hermitage",
                     Place = "Rhone",
                     Region = "Crozes Hermitage",
@@ -202,7 +194,6 @@ namespace WineRegApp.Services
                 };
                 Wine w9 = new Wine
                 {
-                    ID = 8,
                     Name = "Faiveley Bourgogne Chardonnay",
                     Place = "Burgund",
                     Region = "Burgund",
@@ -216,7 +207,6 @@ namespace WineRegApp.Services
                 };
                 Wine w10 = new Wine
                 {
-                    ID = 9,
                     Name = "Domaine Romanee Conti",
                     Place = "Burgund",
                     Region = "Cote d'Or",

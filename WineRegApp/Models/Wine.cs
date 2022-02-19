@@ -1,5 +1,7 @@
 ﻿using System;
 using SQLite;
+using Xamarin.Forms;
+
 namespace WineRegApp.Models
 {
     public class Wine
@@ -18,5 +20,14 @@ namespace WineRegApp.Models
         public DateTime CanDrinkFromDate { get; set; }
         public DateTime CanDrinkToDate { get; set; }
 
+        public Color WineColor
+        {
+            get
+            {
+                if (this.WineType == WineType.Red) return Color.Red;
+                if (this.WineType == WineType.Rose) return Color.Plum;
+                return Color.Wheat;
+            }
+        }
     }
 }

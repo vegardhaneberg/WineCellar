@@ -85,15 +85,15 @@
                                  Grid.Column="0"
                                  Padding="0"
                                  Margin="20, 0, 0, 0">
-                        <Frame BackgroundColor="Red" CornerRadius="9" Padding="0" HeightRequest="40" WidthRequest="40" IsClippedToBounds="True"
+                        <Frame BackgroundColor="Red" CornerRadius="9" Padding="0" HeightRequest="40" WidthRequest="40" IsClippedToBounds="True" Opacity="0.8"
                                HorizontalOptions="Center" VerticalOptions="Center">
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding RedCount}" TextColor="WhiteSmoke"></Label>
                         </Frame>
-                        <Frame BackgroundColor="Plum" CornerRadius="9" Padding="0" HeightRequest="40" WidthRequest="40" IsClippedToBounds="True"
+                        <Frame BackgroundColor="Plum" CornerRadius="9" Padding="0" HeightRequest="40" WidthRequest="40" IsClippedToBounds="True" Opacity="0.8"
                                HorizontalOptions="Center" VerticalOptions="Center">
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding WhiteCount}" TextColor="WhiteSmoke"></Label>
                         </Frame>
-                        <Frame BackgroundColor="Khaki" CornerRadius="9" Padding="0" HeightRequest="40" WidthRequest="40" IsClippedToBounds="True"
+                        <Frame BackgroundColor="Khaki" CornerRadius="9" Padding="0" HeightRequest="40" WidthRequest="40" IsClippedToBounds="True" Opacity="0.8"
                                HorizontalOptions="Center" VerticalOptions="Center">
                             <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding RoseCount}" TextColor="WhiteSmoke"></Label>
                         </Frame>
@@ -166,34 +166,17 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-
-                            <!--<Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Margin="0" HorizontalOptions="Center" VerticalOptions="Center">
-                                  <Image.Source>
-                                    <FontImageSource FontFamily="FontAwesome6Solid"
-                                                     Color="Red"
-                                                     Glyph="&#xf4e3;"/>
-                                  </Image.Source>
-                                </Image>
-                                <Label Text="{Binding Name}" Grid.Column="1"/>
-                            </Grid>-->
-
-                            <!--<TextCell Text="{Binding Name}" Grid.Column="0"/>-->
-
                                 <StackLayout Orientation="Horizontal">
-                                    <Image HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Image HorizontalOptions="Center" VerticalOptions="Center" Opacity=".7">
                                         <Image.Source>
-                                            <FontImageSource FontFamily="FontAwesome6Solid" Color="Red" Glyph="&#xf4e3;"/>
+                                            <FontImageSource FontFamily="FontAwesome6Solid" Color="{Binding WineColor}" Glyph="&#xf4e3;"/>
                                         </Image.Source>
                                     </Image>
                                     <Label Text="{Binding Name}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <BoxView WidthRequest="1" BackgroundColor="WhiteSmoke" CornerRadius="1" Margin="0, 7, 0, 7" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Year}" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 </StackLayout>
                             </ViewCell>
-
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
