@@ -15,6 +15,8 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="DIPS.Xamarin.UI" Version="7.0.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -28,6 +30,8 @@
     <None Remove="Resources\FontAwesome6Brands.otf" />
     <None Remove="Resources\FontAwesome6Regular.otf" />
     <None Remove="Resources\FontAwesome6Solid.otf" />
+    <None Remove="ZXing.Net.Mobile" />
+    <None Remove="ZXing.Net.Mobile.Forms" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\FontAwesome6Brands.otf" />

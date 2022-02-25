@@ -46,6 +46,13 @@
                                      TitleTextColor="Black"
                                      TitleFontSize="16"
                                      Command="{Binding FillDummyDataCommand}"/>
+                    <dxui:MenuButton Title="ScanPage"
+                                     BackgroundColor="CornflowerBlue"
+                                     TextColor="GreenYellow"
+                                     FontSize="14"
+                                     TitleTextColor="Black"
+                                     TitleFontSize="16"
+                                     Command="{Binding ScanPageCommand}"/>
                 </dxui:FloatingActionMenuBehaviour>
 
                 <!-- Filter Sheet View -->

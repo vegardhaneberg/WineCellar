@@ -6,12 +6,15 @@ using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using WineRegApp.ViewModels;
 using System.Collections.Generic;
+using WineRegApp.Views;
+
 
 namespace WineRegApp.ViewModels
 {
     public class AddWineViewModel : INotifyPropertyChanged
     {
         public ICommand AddWineCommand { get; set; }
+        public ICommand ScanCompleteCommand { get; set; }
         private string newName;
         private string newYear;
         private string newPrice;
@@ -44,6 +47,13 @@ namespace WineRegApp.ViewModels
             };
 
             this.parentViewModel = parentViewModel;
+
+            ScanCompleteCommand = new Command(async () =>
+            {
+                Page addWinePage = new AddWinePage();
+                addWinePage.BindingContext = this;
+                await App.Current.MainPage.Navigation.PushAsync(addWinePage);
+            });
 
             AddWineCommand = new Command(() =>
             {
