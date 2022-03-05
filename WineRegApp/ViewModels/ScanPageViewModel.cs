@@ -13,10 +13,9 @@ namespace WineRegApp.ViewModels
     public class ScanPageViewModel : INotifyPropertyChanged
     {
         public Result Result { get; set; }
-        public bool IsScanning { get; set; }
-        public bool IsAnalyzing { get; set; }
-        private string barCode { get; set; }
         public ICommand ScanCommand { get; set; }
+        public bool isScanning { get; set; }
+        public bool isAnalyzing { get; set; }
 
         public ScanPageViewModel()
         {
@@ -25,22 +24,37 @@ namespace WineRegApp.ViewModels
 
             ScanCommand = new Command(() =>
             {
-                IsScanning = false;
-                IsAnalyzing = false;
-                BarCode = Result.Text;
-                IsScanning = true;
-                IsAnalyzing = true;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    IsAnalyzing = false;
+                    //await App.Current.MainPage.DisplayAlert("Scan Completed", Result.Text, "Ok");
+
+                    Page addWinePage = new AddWinePage();
+                    addWinePage.BindingContext = new AddWineViewModel(Result.Text);
+                    await App.Current.MainPage.Navigation.PushAsync(addWinePage);
+                    IsScanning = false;
+                });
             }); 
         }
-        public string BarCode
+        public bool IsScanning
         {
-            get { return barCode; }
+            get { return isScanning; }
             set
             {
-                barCode = value;
+                isScanning = value;
                 NotifyPropertyChanged();
             }
         }
+        public bool IsAnalyzing
+        {
+            get { return isAnalyzing; }
+            set
+            {
+                isAnalyzing = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

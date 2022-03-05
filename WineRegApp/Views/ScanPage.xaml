@@ -6,15 +6,12 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     x:Class="WineRegApp.Views.ScanPage"
     xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
-    <StackLayout Orientation="Vertical">
-        <Label Text="{Binding BarCode}" TextColor="WhiteSmoke" BackgroundColor="Black"/>
-        <zxing:ZXingScannerView x:Name="ucZXingScannerView" 
-                            IsScanning="{Binding IsScanning}" 
-                            IsAnalyzing="{Binding IsAnalyzing}"
-                            Result="{Binding Result}"
-                            ScanResultCommand="{Binding ScanCommand }" />
+    <zxing:ZXingScannerView x:Name="ucZXingScannerView" 
+                        IsScanning="{Binding IsScanning}" 
+                        IsAnalyzing="{Binding IsAnalyzing}"
+                        Result="{Binding Result, Mode=TwoWay}"
+                        ScanResultCommand="{Binding ScanCommand }" />
         
-    </StackLayout>
 </ContentPage>
 
 

@@ -37,18 +37,6 @@ namespace WineRegApp.ViewModels
             maxStoreYears = "";
             selectedWineType = "";
             newCountry = "";
-            //else
-            //{
-            //    NewName = wine.Name;
-            //    NewYear = wine.Year.ToString();
-            //    NewPrice = wine.Price.ToString();
-            //    NewPlace = wine.Place;
-            //    NewRegion = wine.Region;
-            //    MinStoreYears = (wine.CanDrinkFromDate.Year - DateTime.Now.Year).ToString();
-            //    MaxStoreYears = (wine.CanDrinkToDate.Year - DateTime.Now.Year).ToString();
-            //    SelectedWineType = wine.WineType.ToString();
-            //    NewCountry = wine.Country;
-            //}
             
             wineTypes = new List<string>
             {
