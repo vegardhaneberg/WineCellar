@@ -91,11 +91,11 @@
                         </Frame>
                         <Frame BackgroundColor="Plum" CornerRadius="9" Padding="0" HeightRequest="40" WidthRequest="40" IsClippedToBounds="True" Opacity="0.8"
                                HorizontalOptions="Center" VerticalOptions="Center">
-                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding WhiteCount}" TextColor="WhiteSmoke"></Label>
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding RoseCount}" TextColor="WhiteSmoke"></Label>
                         </Frame>
                         <Frame BackgroundColor="Khaki" CornerRadius="9" Padding="0" HeightRequest="40" WidthRequest="40" IsClippedToBounds="True" Opacity="0.8"
                                HorizontalOptions="Center" VerticalOptions="Center">
-                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding RoseCount}" TextColor="WhiteSmoke"></Label>
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding WhiteCount}" TextColor="WhiteSmoke"></Label>
                         </Frame>
                     </StackLayout>
 

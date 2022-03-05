@@ -7,6 +7,7 @@ using System.ComponentModel;
 using WineRegApp.ViewModels;
 using System.Collections.Generic;
 using WineRegApp.Views;
+using ZXing;
 
 
 namespace WineRegApp.ViewModels
@@ -14,7 +15,6 @@ namespace WineRegApp.ViewModels
     public class AddWineViewModel : INotifyPropertyChanged
     {
         public ICommand AddWineCommand { get; set; }
-        public ICommand ScanCompleteCommand { get; set; }
         private string newName;
         private string newYear;
         private string newPrice;
@@ -26,9 +26,7 @@ namespace WineRegApp.ViewModels
         private string maxStoreYears;
         private string newCountry;
 
-        private MainPageViewModel parentViewModel;
-
-        public AddWineViewModel(MainPageViewModel parentViewModel)
+        public AddWineViewModel(string barCode)
         {
             newName = "";
             newYear = "";
@@ -39,6 +37,19 @@ namespace WineRegApp.ViewModels
             maxStoreYears = "";
             selectedWineType = "";
             newCountry = "";
+            //else
+            //{
+            //    NewName = wine.Name;
+            //    NewYear = wine.Year.ToString();
+            //    NewPrice = wine.Price.ToString();
+            //    NewPlace = wine.Place;
+            //    NewRegion = wine.Region;
+            //    MinStoreYears = (wine.CanDrinkFromDate.Year - DateTime.Now.Year).ToString();
+            //    MaxStoreYears = (wine.CanDrinkToDate.Year - DateTime.Now.Year).ToString();
+            //    SelectedWineType = wine.WineType.ToString();
+            //    NewCountry = wine.Country;
+            //}
+            
             wineTypes = new List<string>
             {
                 "Red",
@@ -46,16 +57,7 @@ namespace WineRegApp.ViewModels
                 "Rose"
             };
 
-            this.parentViewModel = parentViewModel;
-
-            ScanCompleteCommand = new Command(async () =>
-            {
-                Page addWinePage = new AddWinePage();
-                addWinePage.BindingContext = this;
-                await App.Current.MainPage.Navigation.PushAsync(addWinePage);
-            });
-
-            AddWineCommand = new Command(() =>
+            AddWineCommand = new Command(async () =>
             {
                 WineType wineType = WineType.Red;
                 if (selectedWineType == "White") wineType = WineType.White;
@@ -77,17 +79,22 @@ namespace WineRegApp.ViewModels
                                                         DateTime.Now.Day),
                         CanDrinkToDate = new DateTime(DateTime.Now.Year + int.Parse(maxStoreYears),
                                                       DateTime.Now.Month,
-                                                      DateTime.Now.Day)
+                                                      DateTime.Now.Day),
+                        BarCode = barCode,
                     };
 
-                    parentViewModel.Wines.Add(newWine);
-                    App.Database.SaveWineAsync(newWine);
-                    parentViewModel.UpdateWineCounts();
-                    Application.Current.MainPage.Navigation.PopAsync();
+                    await App.Database.SaveWineAsync(newWine);
+
+                    Page mainPage = new MainPage();
+                    MainPageViewModel mainPageVM = new MainPageViewModel();
+                    mainPage.BindingContext = mainPageVM;
+                    mainPageVM.Initialize();
+                    await App.Current.MainPage.Navigation.PushAsync(mainPage);
+
                 }
                 catch (Exception)
                 {
-                    App.Current.MainPage.DisplayAlert("Invalid Wine Entry",
+                    await App.Current.MainPage.DisplayAlert("Invalid Wine Entry",
                         "Make sure year and price are numbers",
                         "OK");
                 }

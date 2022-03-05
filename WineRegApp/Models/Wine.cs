@@ -19,6 +19,7 @@ namespace WineRegApp.Models
         public DateTime StoredDate { get; set; }
         public DateTime CanDrinkFromDate { get; set; }
         public DateTime CanDrinkToDate { get; set; }
+        public string BarCode { get; set; }
 
         public Color WineColor
         {

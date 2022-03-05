@@ -52,15 +52,15 @@ namespace WineRegApp.ViewModels
             ScanPageCommand = new Command(async () =>
             {
                MenuButtonIsOpen = false;
-                Page scanPage = new ScanPage();
-                scanPage.BindingContext = new AddWineViewModel(this);
-                await App.Current.MainPage.Navigation.PushAsync(scanPage);
+               Page scanPage = new ScanPage();
+               scanPage.BindingContext = new ScanPageViewModel();
+               await App.Current.MainPage.Navigation.PushAsync(scanPage);
             });
             AddWineCommand = new Command(async () =>
             {
                 MenuButtonIsOpen = false;
                 Page addWinePage = new AddWinePage();
-                addWinePage.BindingContext = new AddWineViewModel(this);
+                addWinePage.BindingContext = new AddWineViewModel("");
                 await App.Current.MainPage.Navigation.PushAsync(addWinePage);
             });
             DeleteAllCommand = new Command(async () =>
@@ -161,15 +161,15 @@ namespace WineRegApp.ViewModels
 
         private int getTypeCount(WineType wt)
         {
-            int redCount = 0;
+            int count = 0;
             foreach (Wine w in Wines)
             {
                 if (w.WineType == wt)
                 {
-                    redCount++;
+                    count++;
                 }
             }
-            return redCount;
+            return count;
         }
 
         public int RedCount
@@ -212,19 +212,19 @@ namespace WineRegApp.ViewModels
 
         public async void Initialize()
         {
-            SortCategory sortCat1 = new SortCategory("Name");
-            SortCategory sortCat2 = new SortCategory("Year");
-            SortCategory sortCat3 = new SortCategory("Drink Urgency");
-            SortCategory sortCat4 = new SortCategory("Price");
+            SortCategory sortCatName = new SortCategory("Name");
+            SortCategory sortCatYear = new SortCategory("Year");
+            SortCategory sortCatUrgency = new SortCategory("Drink Urgency");
+            SortCategory sortCatPrice = new SortCategory("Price");
 
             SortCategories = new ObservableCollection<SortCategory>
             {
-                sortCat1,
-                sortCat2,
-                sortCat3,
-                sortCat4,
+                sortCatName,
+                sortCatYear,
+                sortCatUrgency,
+                sortCatPrice,
             };
-            SelectedSortCategory = sortCat1;
+            SelectedSortCategory = sortCatName;
 
             WineRequest wineRequest = new WineRequest(SelectedSortCategory.WineCategoryEnum, SortAscending);
 

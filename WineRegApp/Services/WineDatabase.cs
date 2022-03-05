@@ -36,7 +36,7 @@ namespace WineRegApp.Services
             else if (request.SortValue == WineSortCategory.Price)
             {
                 if (request.Ascending) return await database.Table<Wine>().OrderBy(obj => obj.Price).ToListAsync();
-                else return await database.Table<Wine>().OrderByDescending(obj => obj.Year).ToListAsync();
+                else return await database.Table<Wine>().OrderByDescending(obj => obj.Price).ToListAsync();
             }
             // Assumes that the final sort category is CanDrinkToDate (Drink Urgency).
             // If more sorting options are added, include them as else if above this one. 
@@ -51,6 +51,11 @@ namespace WineRegApp.Services
         {
             return database.Table<Wine>()
                 .Where(i => i.ID == id).FirstOrDefaultAsync();
+        }
+        public Task<Wine> GetWineByBarCodeAsync(string barCode)
+        {
+            return database.Table<Wine>()
+                .Where(wine => wine.BarCode == barCode).FirstOrDefaultAsync();
         }
 
         // Save Mathods
