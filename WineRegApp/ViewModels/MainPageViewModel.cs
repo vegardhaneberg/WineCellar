@@ -26,6 +26,7 @@ namespace WineRegApp.ViewModels
         public ICommand AscendingCommand { private set; get; }
         public ICommand DescendingCommand { private set; get; }
         public ICommand ScanPageCommand { private set; get; }
+        public ICommand WinePageCommand { private set; get; }
 
         private bool filterIsOpen;
         private bool menuButtonIsOpen;
@@ -49,6 +50,11 @@ namespace WineRegApp.ViewModels
             wines = new ObservableCollection<Wine>();
             sortCategories = new ObservableCollection<SortCategory>();
 
+            WinePageCommand = new Command(async () =>
+            {
+                WinePage winePage = new WinePage();
+                await App.Current.MainPage.Navigation.PushAsync(winePage);
+            });
             ScanPageCommand = new Command(async () =>
             {
                MenuButtonIsOpen = false;

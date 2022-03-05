@@ -31,28 +31,35 @@
                                      FontSize="14"
                                      TitleTextColor="Black"
                                      TitleFontSize="16"
-                                     Command="{Binding DeleteAllCommand}"/>
+                                     Command="{Binding DeleteAllCommand}" />
                     <dxui:MenuButton Title="Add Wine"
                                      BackgroundColor="CornflowerBlue"
                                      TextColor="GreenYellow"
                                      FontSize="14"
                                      TitleTextColor="Black"
                                      TitleFontSize="16"
-                                     Command="{Binding AddWineCommand}"/>
+                                     Command="{Binding AddWineCommand}" />
                     <dxui:MenuButton Title="Fill Dummy Data"
                                      BackgroundColor="CornflowerBlue"
                                      TextColor="GreenYellow"
                                      FontSize="14"
                                      TitleTextColor="Black"
                                      TitleFontSize="16"
-                                     Command="{Binding FillDummyDataCommand}"/>
+                                     Command="{Binding FillDummyDataCommand}" />
                     <dxui:MenuButton Title="ScanPage"
                                      BackgroundColor="CornflowerBlue"
                                      TextColor="GreenYellow"
                                      FontSize="14"
                                      TitleTextColor="Black"
                                      TitleFontSize="16"
-                                     Command="{Binding ScanPageCommand}"/>
+                                     Command="{Binding ScanPageCommand}" />
+                    <dxui:MenuButton Title="WinePage"
+                                     BackgroundColor="CornflowerBlue"
+                                     TextColor="GreenYellow"
+                                     FontSize="14"
+                                     TitleTextColor="Black"
+                                     TitleFontSize="16"
+                                     Command="{Binding WinePageCommand}" />
                 </dxui:FloatingActionMenuBehaviour>
 
                 <!-- Filter Sheet View -->

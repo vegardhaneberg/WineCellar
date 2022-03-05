@@ -28,11 +28,20 @@ namespace WineRegApp.ViewModels
                 {
                     IsAnalyzing = false;
                     //await App.Current.MainPage.DisplayAlert("Scan Completed", Result.Text, "Ok");
+                    Wine wine = await App.Database.GetWineByBarCodeAsync(Result.Text);
 
-                    Page addWinePage = new AddWinePage();
-                    addWinePage.BindingContext = new AddWineViewModel(Result.Text);
-                    await App.Current.MainPage.Navigation.PushAsync(addWinePage);
-                    IsScanning = false;
+                    if (wine is null)
+                    {
+                        AddWinePage addWinePage = new AddWinePage();
+                        addWinePage.BindingContext = new AddWineViewModel(Result.Text);
+                        await App.Current.MainPage.Navigation.PushAsync(addWinePage);
+                    }
+                    else
+                    {
+                        // Navigate to some Wine Page
+                    }
+
+                    
                 });
             }); 
         }
