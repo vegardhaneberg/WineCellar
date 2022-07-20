@@ -44,7 +44,6 @@ namespace WineRegApp.Services
             {
                 if (request.Ascending) return await database.Table<Wine>().OrderBy(obj => obj.CanDrinkToDate).ToListAsync();
                 else return await database.Table<Wine>().OrderByDescending(obj => obj.CanDrinkToDate).ToListAsync();
-
             }
         }
         public Task<Wine> GetWineAsync(int id)

@@ -7,7 +7,7 @@ namespace WineRegApp.ViewModels
     {
         public Wine Wine { get; set; }
 
-        public WinePageViewModel(WinePageViewModel wine)
+        public WinePageViewModel(Wine wine)
         {
             this.Wine = wine;
         }
